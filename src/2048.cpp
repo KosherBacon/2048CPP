@@ -78,6 +78,10 @@ vector<int> unusedSpaces()
 void fillNewSpot()
 {
     int temp = unusedSpaces().size();
+    if (temp == 0)
+    {
+        return;
+    }
     int randVec = (int) (temp * random(0,1));
     int pos = unusedSpaces()[randVec];
 
