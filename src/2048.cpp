@@ -6,7 +6,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <time.h>
-#include <curses.h>
+#include <ncurses.h>
 
 #define aSize 4
 #define ESC 27
@@ -32,7 +32,7 @@ bool useFourTile()
 }
 
 // Updates the console to show the latest board
-void updateConsole()
+string refreshBoardString()
 {
     string output = "";
     for (int i = 0; i < aSize; i++)
@@ -49,9 +49,12 @@ void updateConsole()
         }
         output += "\n";
     }
-    output += "\r";
-    printw(output.c_str());
-    //cout << output << "\r";
+    return output += "\r";
+}
+
+void printScreen(string output)
+{
+    mvprintw(0, 0, output.c_str());
 }
 
 // Returns vector of unused board spaces
@@ -105,8 +108,7 @@ int main(int argc, char *argv[])
     initscr();
     noecho();
     keypad(stdscr, true);
-
-    updateConsole();
+    printScreen(refreshBoardString());
 
     bool stop = false;
 
@@ -115,16 +117,20 @@ int main(int argc, char *argv[])
         switch (getch())
         {
             case KEY_UP:
-                printw("UP\n");
+                fillNewSpot();
+                printScreen(refreshBoardString());
                 break;
             case KEY_DOWN:
-                printw("DOWN\n");
+                fillNewSpot();
+                printScreen(refreshBoardString());
                 break;
             case KEY_LEFT:
-                printw("LEFT\n");
+                fillNewSpot();
+                printScreen(refreshBoardString());
                 break;
             case KEY_RIGHT:
-                printw("RIGHT\n");
+                fillNewSpot();
+                printScreen(refreshBoardString());
                 break;
             case ESC:
                 stop = true;
