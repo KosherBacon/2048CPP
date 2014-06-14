@@ -16,6 +16,23 @@ using namespace std;
 // Global Variables
 int board[aSize][aSize];
 enum direction {UP, DOWN, LEFT, RIGHT};
+enum score
+{
+    S2 = 2,
+    S4 = 4,
+    S8 = 8,
+    S16 = 16,
+    S32 = 32,
+    S64 = 64,
+    S128 = 128,
+    S256 = 256,
+    S512 = 512,
+    S1024 = 1024,
+    S2048 = 2048,
+    S4096 = 4096,
+    S8192 = 8192,
+    S16384 = 16384
+};
 
 inline double random(double x0, double x1)
 {
