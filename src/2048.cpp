@@ -15,6 +15,7 @@ using namespace std;
 
 // Global Variables
 int board[aSize][aSize];
+enum direction {UP, DOWN, LEFT, RIGHT};
 
 inline double random(double x0, double x1)
 {
@@ -91,6 +92,30 @@ void fillNewSpot()
     board[divresult.quot][divresult.rem] = useFourTile() ? 4 : 2;
 }
 
+// Combine Left, Right, Up, and Down
+void move(int direction)
+{
+    string nums, result;
+    switch (direction)
+    {
+        case LEFT:
+            for (int i = 0; i < aSize; i++)
+            {
+                for (int j : board[i])
+                {
+                    nums += to_string(j);
+                }
+            }
+            break;
+        case RIGHT:
+            break;
+        case UP:
+            break;
+        case DOWN:
+            break;
+    }
+}
+
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
@@ -121,18 +146,22 @@ int main(int argc, char *argv[])
         switch (getch())
         {
             case KEY_UP:
+                move(UP);
                 fillNewSpot();
                 printScreen(refreshBoardString());
                 break;
             case KEY_DOWN:
+                move(DOWN);
                 fillNewSpot();
                 printScreen(refreshBoardString());
                 break;
             case KEY_LEFT:
+                move(LEFT);
                 fillNewSpot();
                 printScreen(refreshBoardString());
                 break;
             case KEY_RIGHT:
+                move(RIGHT);
                 fillNewSpot();
                 printScreen(refreshBoardString());
                 break;
