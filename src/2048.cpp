@@ -112,7 +112,13 @@ void move(int direction)
                 {
                     nums += to_string(j);
                 }
+                // Remove all 0's from the string
                 nums = findReplace(nums, "0", "");
+                // Iterate through scores to combine terms
+                for (int var : score)
+                {
+                    nums = findReplace(nums, to_string(var) + to_string(var), to_string(2 * var));
+                }
                 nums = "";
             }
             break;
