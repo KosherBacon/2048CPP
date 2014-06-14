@@ -24,11 +24,11 @@ inline double random(double x0, double x1)
 // Returns whether or not a 4 tile will be placed
 bool useFourTile()
 {
-    if (random(0, 1) < 0.1)
+    if (random(0, 1) < 0.9)
     {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
 // Updates the console to show the latest board
