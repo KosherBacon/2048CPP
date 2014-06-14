@@ -10,29 +10,14 @@
 
 #define aSize 4
 #define ESC 27
+#define sSize 14
 
 using namespace std;
 
 // Global Variables
 int board[aSize][aSize];
 enum direction {UP, DOWN, LEFT, RIGHT};
-enum score
-{
-    S2 = 2,
-    S4 = 4,
-    S8 = 8,
-    S16 = 16,
-    S32 = 32,
-    S64 = 64,
-    S128 = 128,
-    S256 = 256,
-    S512 = 512,
-    S1024 = 1024,
-    S2048 = 2048,
-    S4096 = 4096,
-    S8192 = 8192,
-    S16384 = 16384
-};
+int score[sSize] {2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
 
 inline double random(double x0, double x1)
 {
@@ -109,6 +94,11 @@ void fillNewSpot()
     board[divresult.quot][divresult.rem] = useFourTile() ? 4 : 2;
 }
 
+inline string findReplace(string &s, string find, string replace)
+{
+    return s.replace(s.find(find), find.length(), replace);
+}
+
 // Combine Left, Right, Up, and Down
 void move(int direction)
 {
@@ -122,6 +112,8 @@ void move(int direction)
                 {
                     nums += to_string(j);
                 }
+                nums = findReplace(nums, "0", "");
+                nums = "";
             }
             break;
         case RIGHT:
